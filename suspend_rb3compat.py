@@ -19,6 +19,7 @@
 
 from gi.repository import Gtk
 from gi.repository import Gio
+from gi.repository import GLib
 import sys
 import rb
 import lxml.etree as ET
@@ -383,6 +384,7 @@ class ActionGroup(object):
         key value of "label" is the visual menu label to display
         key value of "action_type" is the RB2.99 Gio.Action type ("win" or "app")
            by default it assumes all actions are "win" type
+        key value of "action_state" determines what action state to create
         '''
         if 'label' in args:
             label = args['label']
@@ -390,15 +392,20 @@ class ActionGroup(object):
             label=action_name
         
         if is_rb3(self.shell):
-            action = Gio.SimpleAction.new(action_name, None)
+            
+            state = ActionGroup.STANDARD
+            
+            if 'action_state' in args:
+                state = args['action_state']
+                
+            if state == ActionGroup.TOGGLE:
+                action = Gio.SimpleAction.new_stateful(action_name, None,
+                                               GLib.Variant('b', False))
+            else:
+                action = Gio.SimpleAction.new(action_name, None)
+            
             action.connect('activate', func, args)
 
-            if 'action_state' in args:
-                print "here"
-                if args['action_state']==ActionGroup.TOGGLE:
-                    print "here"
-                    action.change_state("b")
-            
             action_type = 'win'
             if 'action_type' in args:
                 if args['action_type'] == 'app':
