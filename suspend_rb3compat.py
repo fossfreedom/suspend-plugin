@@ -391,13 +391,11 @@ class ActionGroup(object):
         else:
             label=action_name
         
+        state = ActionGroup.STANDARD            
+        if 'action_state' in args:
+            state = args['action_state']
+        
         if is_rb3(self.shell):
-            
-            state = ActionGroup.STANDARD
-            
-            if 'action_state' in args:
-                state = args['action_state']
-                
             if state == ActionGroup.TOGGLE:
                 action = Gio.SimpleAction.new_stateful(action_name, None,
                                                GLib.Variant('b', False))
@@ -418,15 +416,15 @@ class ActionGroup(object):
                 self.shell.props.window.add_action(action)
                 self.actiongroup.add_action(action)
         else:
-            if 'action_state' in args:
-                if args['action_state']==ActionGroup.TOGGLE:
-                    action = Gtk.ToggleAction(label=label,
-                        name=action_name,
-                       tooltip='', stock_id=Gtk.STOCK_CLEAR)
-                else:
-                    action = Gtk.Action(label=label,
-                        name=action_name,
-                       tooltip='', stock_id=Gtk.STOCK_CLEAR)
+            if state == ActionGroup.TOGGLE:
+                action = Gtk.ToggleAction(label=label,
+                    name=action_name,
+                   tooltip='', stock_id=Gtk.STOCK_CLEAR)
+            else:
+                action = Gtk.Action(label=label,
+                    name=action_name,
+                   tooltip='', stock_id=Gtk.STOCK_CLEAR)
+
             action.connect('activate', func, None, args)
             self.actiongroup.add_action(action)
             
