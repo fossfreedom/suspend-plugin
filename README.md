@@ -1,7 +1,7 @@
 suspend-plugin
 ==============
 
-Suspend computer at the end of queue or playlist
+Enable Rhythmbox to suspend/shutdown your computer at the end of playing from the queue or playlist
 
 ##GTK3 Author
 
