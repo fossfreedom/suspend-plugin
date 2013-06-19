@@ -35,7 +35,7 @@ from gi.repository import GLib
 from gi.repository import Peas
 from gi.repository import PeasGtk
 
-import rb
+#import rb
 import dbus
 import os
 

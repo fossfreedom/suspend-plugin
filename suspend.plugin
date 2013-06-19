@@ -2,7 +2,6 @@
 Loader=python
 Module=suspend
 IAge=2
-Depends=rb
 Name=Suspend computer
 Description=Suspend computer at the end of queue or playlist
 Authors=fossfreedom <foss.freedom@gmail.com>

@@ -3,6 +3,17 @@ suspend-plugin
 
 Enable Rhythmbox to suspend/shutdown your computer at the end of playing from the queue or playlist
 
+To use:
+
+ 1. set the plugin preferences option to either poweroff or suspend.
+
+ 2. For RB2.96 - 2.98 - enable the menu option Control - Poweroff to activate the plugin
+ 
+ 3. For RB2.99 and later - enable the menu option View - Powerof to activate the plugin
+ 
+ 4. Play your music from the playqueue or playlist.  At the end of the queue, a dialog will be displayed with a countdown.  
+ you can either, ignore the dialog and the computer will suspend/poweroff or interrupt the process.
+
 ##GTK3 Author
 
  - fossfreedom <foss.freedom@gmail.com>, website - https://github.com/fossfreedom
