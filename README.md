@@ -33,10 +33,8 @@ packages required to be installed:
 
 Installation:
 
-<code>
-git clone https://github.com/fossfreedom/smallwindow
-cd smallwindow
-</code>
+    git clone https://github.com/fossfreedom/suspend-plugin
+    cd suspend-plugin
 
 for rhythmbox 2.96 to 2.99.1
 
