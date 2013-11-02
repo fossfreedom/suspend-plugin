@@ -29,4 +29,23 @@ Ubuntu 12.04 notes:
 
 packages required to be installed:
 
-sudo apt-get install gir1.2-gconf-2.0 python-lxml
+    sudo apt-get install gir1.2-gconf-2.0 python-lxml
+
+Installation:
+
+<code>
+git clone https://github.com/fossfreedom/smallwindow
+cd smallwindow
+</code>
+
+for rhythmbox 2.96 to 2.99.1
+
+<code>
+./install.sh
+</code>
+
+for rhythbox 3.0 and later
+
+<code>
+./install.sh --rb3
+</code>

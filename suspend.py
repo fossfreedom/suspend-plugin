@@ -71,16 +71,16 @@ class SuspendConfigDialog(GObject.Object, PeasGtk.Configurable):
     object = GObject.property(type=GObject.Object)
 
     def __init__(self):
-        print "__init__"
+        print("__init__")
         GObject.Object.__init__(self)
         self.gconf = GConf.Client.get_default()
         
     def do_create_configure_widget(self):
-        print "do_create_configure_widget"
+        print("do_create_configure_widget")
         self.builder = Gtk.Builder()
         ui_file = os.path.dirname(__file__) + "/" + DIALOG_FILE 
         #rb.find_plugin_file( self, DIALOG_FILE ) this should find the fine by instead returns None - dont know why
-        print ui_file
+        print(ui_file)
         self.builder.add_from_file(ui_file)
 
         content = self.builder.get_object("dialog-vbox1")
@@ -120,7 +120,7 @@ class SuspendConfigDialog(GObject.Object, PeasGtk.Configurable):
     
     def action_changed_cb(self, combo):
         v = combo.get_active()
-        print "mode changed to %d" % v
+        print("mode changed to %d" % v)
         self.gconf.set_int(GCONF_KEYS['action'], v)
         
 #   def close_cb(self, widget, event):
@@ -129,7 +129,7 @@ class SuspendConfigDialog(GObject.Object, PeasGtk.Configurable):
 #       print 'close', self.textTime.get_text()
     def action_changed_time(self, textTime):
         self.gconf.set_string(GCONF_KEYS['time'], self.textTime.get_text())
-        print 'time', self.textTime.get_text()
+        print('time', self.textTime.get_text())
 
 #d = SuspendConfigDialog()
 #d.run()
@@ -222,7 +222,7 @@ class SuspendPlugin(GObject.GObject, Peas.Activatable):
         proxy = bus.get_object('org.freedesktop.UPower', '/org/freedesktop/UPower')
         iface = dbus.Interface(proxy, 'org.freedesktop.UPower')
         ret = iface.Suspend()
-        print 'POWER OFF', ret
+        print('POWER OFF', ret)
         self.dialog.destroy()
     
     def action_shutdown(self):
@@ -230,7 +230,7 @@ class SuspendPlugin(GObject.GObject, Peas.Activatable):
         proxy = bus.get_object('org.freedesktop.ConsoleKit', '/org/freedesktop/ConsoleKit/Manager')
         iface = dbus.Interface(proxy, 'org.freedesktop.ConsoleKit.Manager')
         iface.Stop()
-        print 'SHUTDOWN'
+        print('SHUTDOWN')
         self.dialog.destroy()
     
     def playing_changed(self, player, playing):
@@ -246,7 +246,7 @@ class SuspendPlugin(GObject.GObject, Peas.Activatable):
             response = self.dialog.run()
             if response == Gtk.ResponseType.CANCEL:
                 timer.cancel()
-                print 'cancel'
+                print('cancel')
                 self.is_playing = False
                 
             self.dialog.destroy()
@@ -260,6 +260,6 @@ class SuspendPlugin(GObject.GObject, Peas.Activatable):
         return self.config_dialog
     
     def config_dialog_response_cb(self, dialog, response):
-        print 'response cb'
+        print('response cb')
         dialog.hide()
 # ex:noet:ts=8:
